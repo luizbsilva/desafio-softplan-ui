@@ -1,3 +1,62 @@
-<p>
-  permissoes-pesquisa works!
-</p>
+<div class="container">
+  <form autocomplete="off" [formGroup]="formulario">
+    <div class="ui-g">
+
+      <div class="ui-g-12">
+        <h1>Permissão de Usuário</h1>
+      </div>
+
+      <div class="ui-g-12 ui-md-12 ui-fluid" formGroupName="usuario">
+        <label>Usuario Responsável</label>
+        <p-dropdown name="usuario"
+                    [options]="usuarios"
+                    (onChange)="carregarPermissaoUsuario()"
+                    placeholder="Selecione" [autoWidth]="false" [filter]="true"
+          formControlName="codigo"></p-dropdown>
+      </div>
+
+      <div class="ui-g">
+          <div class="ui-g-12">
+            <p-table [value]="permissoes">
+              <ng-template pTemplate="header">
+                <tr>
+                  <th>Código</th>
+                  <th>Descrição</th>
+                  <th class="col-data-header">Selecionar</th>
+                </tr>
+              </ng-template>
+
+              <ng-template pTemplate="body" let-permissao>
+                <tr>
+                  <td>{{ permissao.codigo }}</td>
+                  <td>{{ permissao.descricao }}</td>
+                  <td>
+                    <a href="javascript:;"
+                      [pTooltip]="permissao.selecionado ? 'Desativar' : 'Ativar'"
+                      tooltipPosition="top"
+                      (click)="alternarStatus(permissao)">
+                      {{ permissao.selecionado ? 'Ativo' : 'Inativo' }}
+                    </a>
+                  </td>
+                </tr>
+              </ng-template>
+
+              <ng-template pTemplate="emptymessage">
+                <tr>
+                  <td colspan="6">
+                    Selecione um Usuário Para Adicionar as permissoes
+                  </td>
+                </tr>
+              </ng-template>
+            </p-table>
+          </div>
+        </div>
+
+
+      <div class="ui-g-12">
+        <a routerLink="/dashboard">Voltar para a Pagina Inicial</a>
+      </div>
+
+    </div>
+  </form>
+</div>

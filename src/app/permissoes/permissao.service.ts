@@ -5,24 +5,24 @@ import 'rxjs/add/operator/toPromise';
 
 import { environment } from '../../environments/environment';
 import { MoneyHttp } from '../seguranca/money-http';
-import { Usuario } from '../core/model';
+import { Permissao, Permissoes } from '../core/model';
 
-export class UsuarioFiltro {
+export class PermissaoFiltro {
   nome: string;
   pagina = 0;
-  itensPorPagina = 5;
+  itensPorPagina = 15;
 }
 
 @Injectable()
 export class PermissaoService {
 
-  usuarioUrl: string;
+  permissaoUrl: string;
 
   constructor(private http: MoneyHttp) {
-    this.usuarioUrl = `${environment.apiUrl}/usuarios`;
+    this.permissaoUrl = `${environment.apiUrl}/permissoes`;
   }
 
-  pesquisar(filtro: UsuarioFiltro): Promise<any> {
+  pesquisar(filtro: PermissaoFiltro): Promise<any> {
     let params = new HttpParams({
       fromObject: {
         page: filtro.pagina.toString(),
@@ -34,13 +34,13 @@ export class PermissaoService {
       params = params.append('nome', filtro.nome);
     }
 
-    return this.http.get<any>(`${this.usuarioUrl}`, { params })
+    return this.http.get<any>(`${this.permissaoUrl}`, { params })
       .toPromise()
       .then(response => {
-        const usuarios = response.content;
+        const permissoes = response.content;
 
         const resultado = {
-          usuarios,
+          permissoes,
           total: response.totalElements
         };
 
@@ -48,40 +48,26 @@ export class PermissaoService {
       });
   }
 
-  listarTodas(): Promise<any> {
-    return this.http.get<any>(this.usuarioUrl)
-      .toPromise()
-      .then(response => response.content);
+  buscarPermissoesUsuario(permissao: Permissoes): Promise<any> {
+    const params = new HttpParams()
+      .append('codigo', permissao.usuario.codigo.toString());
+
+    return this.http.get<any>(`${this.permissaoUrl}/por-usuario`, { params }).toPromise();
+
   }
 
-  excluir(codigo: number): Promise<void> {
-    return this.http.delete(`${this.usuarioUrl}/${codigo}`)
-      .toPromise()
-      .then(() => null);
+  adicionar(permissao: Permissoes): Promise<Permissoes> {
+    return this.http.post<Permissoes>(this.permissaoUrl, permissao)
+      .toPromise();
   }
 
-  mudarStatus(codigo: number, ativo: boolean): Promise<void> {
+  mudarStatus(codigoPermissao: number, permissao: Permissoes, ativo: boolean): Promise<void> {
     const headers = new HttpHeaders()
         .append('Content-Type', 'application/json');
 
-    return this.http.put(`${this.usuarioUrl}/${codigo}/ativo`, ativo, { headers })
+    return this.http.put(`${this.permissaoUrl}/${codigoPermissao}/${permissao.usuario.codigo}/ativo`, ativo, { headers })
       .toPromise()
       .then(() => null);
-  }
-
-  adicionar(usuario: Usuario): Promise<Usuario> {
-    return this.http.post<Usuario>(this.usuarioUrl, usuario)
-      .toPromise();
-  }
-
-  atualizar(usuario: Usuario): Promise<Usuario> {
-    return this.http.put<Usuario>(`${this.usuarioUrl}/${usuario.codigo}`, usuario)
-      .toPromise();
-  }
-
-  buscarPorCodigo(codigo: number): Promise<Usuario> {
-    return this.http.get<Usuario>(`${this.usuarioUrl}/${codigo}`)
-      .toPromise();
   }
 
 }

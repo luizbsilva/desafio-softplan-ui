@@ -23,6 +23,7 @@ import { NaoAutorizadoComponent } from './nao-autorizado.component';
 import { PaginaNaoEncontradaComponent } from './pagina-nao-encontrada.component';
 import { MoneyHttp } from '../seguranca/money-http';
 import { UsuarioService } from './../usuarios/usuario.service';
+import { PermissaoService } from '../permissoes/permissao.service';
 
 registerLocaleData(localePt);
 
@@ -52,6 +53,7 @@ registerLocaleData(localePt);
     UsuarioService,
     DashboardService,
     RelatoriosService,
+    PermissaoService,
     ErrorHandlerService,
     AuthService,
     MoneyHttp,

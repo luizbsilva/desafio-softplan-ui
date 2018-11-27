@@ -18,8 +18,8 @@
         routerLink="/pessoas">Pessoas</a></li>
     <li class="navbar-menuitem" routerLinkActive="ativo" *ngIf="auth.temPermissao('ROLE_PESQUISAR_USUARIO')"><a
         routerLink="/usuarios">Usuários</a></li>
-        <li class="navbar-menuitem" routerLinkActive="ativo" *ngIf="auth.temPermissao('ROLE_CADASTAR_USUARIO')"><a
-            routerLink="/permissao">Permissão Usuários</a></li>
+    <li class="navbar-menuitem" routerLinkActive="ativo" *ngIf="auth.temPermissao('ROLE_PESQUISAR_PERMISSAO')"><a
+        routerLink="/permissoes">Permissão Usuários</a></li>
     <li class="navbar-menuitem" routerLinkActive="ativo" *ngIf="auth.temPermissao('ROLE_PESQUISAR_TICKET')"><a
         routerLink="/relatorios/tickets">Relatório</a></li>
     <li class="navbar-menuitem"><a href="javascript:;" (click)="logout()">Logout</a></li>

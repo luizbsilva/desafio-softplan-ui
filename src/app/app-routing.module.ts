@@ -8,9 +8,9 @@ const routes: Routes = [
   { path: 'tickets', loadChildren: './tickets/tickets.module#TicketsModule' },
   { path: 'pessoas', loadChildren: './pessoas/pessoas.module#PessoasModule' },
   { path: 'usuarios', loadChildren: './usuarios/usuarios.module#UsuariosModule' },
+  { path: 'permissoes', loadChildren: './permissoes/permissoes.module#PermissoesModule' },
   { path: 'dashboard', loadChildren: './dashboard/dashboard.module#DashboardModule'},
   { path: 'relatorios', loadChildren: './relatorios/relatorios.module#RelatoriosModule' },
-
   { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
   { path: 'nao-autorizado', component: NaoAutorizadoComponent },
   { path: 'pagina-nao-encontrada', component: PaginaNaoEncontradaComponent },

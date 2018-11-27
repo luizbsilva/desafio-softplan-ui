@@ -57,7 +57,7 @@ export class PessoaCadastroComponent implements OnInit {
   }
 
   get editando() {
-    return Boolean(this.pessoa.codigo)
+    return Boolean(this.pessoa.codigo);
   }
 
   carregarPessoa(codigo: number) {

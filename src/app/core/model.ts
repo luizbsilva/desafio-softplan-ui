@@ -69,3 +69,16 @@ export class Usuario {
   tipo: string;
   ativo = true;
 }
+
+export class Permissao {
+  codigo: number;
+  nome: string;
+  ativo: boolean;
+}
+
+export class Permissoes {
+  permissoes = [];
+  usuario = new Usuario();
+}
+
+
