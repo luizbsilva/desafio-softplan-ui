@@ -22,7 +22,7 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { NaoAutorizadoComponent } from './nao-autorizado.component';
 import { PaginaNaoEncontradaComponent } from './pagina-nao-encontrada.component';
 import { MoneyHttp } from '../seguranca/money-http';
-import { UsuarioService } from '../usuario/usuario.service';
+import { UsuarioService } from './../usuarios/usuario.service';
 
 registerLocaleData(localePt);
 

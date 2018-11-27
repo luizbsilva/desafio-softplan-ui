@@ -6,12 +6,19 @@
         <h1>Novo Usuario</h1>
       </div>
 
-      <div class="ui-g-12 ui-fluid">
+      <div class="ui-g-8 ui-fluid">
         <label>Nome</label>
         <input pInputText type="text" name="nome" [(ngModel)]="usuario.nome" #nome="ngModel" required minlength="5">
 
         <app-message [control]="nome" error="required" text="Informe o nome"></app-message>
         <app-message [control]="nome" error="minlength" text="Mínimo de {{ nome.errors?.minlength?.requiredLength }} caracteres"></app-message>
+      </div>
+
+      <div class="ui-g-4 ui-md- ui-fluid">
+        <label>Tipo Usuáro</label>
+        <p-dropdown name="tipo" [options]="tipos" placeholder="Selecione"
+          [autoWidth]="false" [filter]="true"
+          [(ngModel)]="usuario.tipo"></p-dropdown>
       </div>
 
 
@@ -26,23 +33,19 @@
 
       <div class="ui-g-12 ui-md-6 ui-fluid">
         <label>Senha</label>
-        <input pInputText type="password" name="senha"  [(ngModel)]="usuario.senha" #senha="ngModel" required>
+        <input pInputText type="password" name="senha" [(ngModel)]="usuario.senha" #senha="ngModel" required>
 
-          <app-message [control]="senha" error="required" text="Informe uma senha"></app-message>
-          <app-message [control]="senha" error="minlength" text="Mínimo de {{ nome.errors?.minlength?.requiredLength }} caracteres"></app-message>
+        <app-message [control]="senha" error="required" text="Informe uma senha"></app-message>
+        <app-message [control]="senha" error="minlength" text="Mínimo de {{ nome.errors?.minlength?.requiredLength }} caracteres"></app-message>
       </div>
 
+      <div class="ui-g-12">
+        <button pButton type="submit" label="Salvar" [disabled]="f.invalid"></button>
+        <button pButton type="button" label="Nova" class="ui-button-info"
+          (click)="nova(f)"></button>
 
-
-      <div class="ui-g-12 ui-md-6 ui-fluid">
-
-        <div class="ui-g-12">
-          <button pButton type="submit" label="Salvar" [disabled]="f.invalid"></button>
-          <button pButton type="button" label="Nova" class="ui-button-info" (click)="nova(f)"></button>
-
-          <a routerLink="/pessoas">Voltar para a pesquisa</a>
-        </div>
+        <a routerLink="/usuarios">Voltar para a pesquisa</a>
       </div>
-
+    </div>
   </form>
 </div>

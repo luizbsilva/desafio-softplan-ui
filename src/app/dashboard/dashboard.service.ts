@@ -9,19 +9,19 @@ import { MoneyHttp } from '../seguranca/money-http';
 @Injectable()
 export class DashboardService {
 
-  lancamentosUrl: string;
+  ticketsUrl: string;
 
   constructor(private http: MoneyHttp) {
-    this.lancamentosUrl = `${environment.apiUrl}/lancamentos`;
+    this.ticketsUrl = `${environment.apiUrl}/tickets`;
   }
 
-  lancamentosPorCategoria(): Promise<Array<any>> {
-    return this.http.get<Array<any>>(`${this.lancamentosUrl}/estatisticas/por-categoria`)
+  ticketsPorCategoria(): Promise<Array<any>> {
+    return this.http.get<Array<any>>(`${this.ticketsUrl}/estatisticas/por-categoria`)
       .toPromise();
   }
 
-  lancamentosPorDia(): Promise<Array<any>> {
-    return this.http.get<Array<any>>(`${this.lancamentosUrl}/estatisticas/por-dia`)
+  ticketsPorDia(): Promise<Array<any>> {
+    return this.http.get<Array<any>>(`${this.ticketsUrl}/estatisticas/por-dia`)
       .toPromise()
       .then(response => {
         const dados = response;

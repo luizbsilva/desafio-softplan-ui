@@ -10,7 +10,7 @@ import { CategoriaService } from '../../categorias/categoria.service';
 import { PessoaService } from '../../pessoas/pessoa.service';
 import { Ticket } from '../../core/model';
 import { TicketService } from '../tickets.service';
-import { UsuarioService } from '../../usuario/usuario.service';
+import { UsuarioService } from 'src/app/usuarios/usuario.service';
 
 @Component({
   selector: 'app-ticket-cadastro',

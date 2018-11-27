@@ -15,7 +15,11 @@ import { UsuarioService } from '../usuario.service';
 })
 export class UsuarioCadastroComponent implements OnInit {
 
-  usuario = new Usuario();
+  usuario = new Usuario();  tipos = [
+    { label: 'Administrador', value: 'ADMINISTRADOR' },
+    { label: 'Técnico', value: 'TECNICO' },
+    { label: 'Solicitante', value: 'USUARIO' },
+  ];
 
   constructor(
     private usuarioService: UsuarioService,

@@ -3,7 +3,7 @@ import { HttpParams, HttpHeaders } from '@angular/common/http';
 
 import 'rxjs/add/operator/toPromise';
 
-import { environment } from './../../environments/environment';
+import { environment } from '../../environments/environment';
 import { MoneyHttp } from '../seguranca/money-http';
 import { Usuario } from '../core/model';
 
@@ -14,7 +14,7 @@ export class UsuarioFiltro {
 }
 
 @Injectable()
-export class UsuarioService {
+export class PermissaoService {
 
   usuarioUrl: string;
 
